@@ -1,8 +1,8 @@
-## Sistem Informasi Auditor Pengawasan (SIAP) Inspektorat Daerah Kabupaten Sidoarjo
+## SSS
 
 
 # Instalasi
-git clone https://github.com/tegarwahyu/inspektorat.git && cd inspektorat
+git clone https://github.com/tegarwahyu/SSS.git && cd inspektorat
 composer update
 cp .envexample .env
 
