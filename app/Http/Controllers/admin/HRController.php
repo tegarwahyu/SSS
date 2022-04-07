@@ -35,7 +35,12 @@ class HRController extends Controller
 
     public function editUser($id)
     {
-        $dataUser = User::find($id);
+        // $dataUser = User::find($id);
+        // $dataUser = User::where('id',$id)->with(['roles' => function ($query) {
+        //                 $query->where('name', '=', 'jabatan');
+        //             }])->get();
+        $dataUser = User::where('id','=',$id)->with('roles')->get();
+        // dd($dataUser);
         // return view('admin.hr.uploadFile',['dataUser'=>$dataUser]);
         return $dataUser;
     }
@@ -48,7 +53,7 @@ class HRController extends Controller
     //data table user
     public function getDataUser($id){
         if($id == 1){
-            $users = User::where('email','!=','admin@local.host')->where('user_status','!=','aktif')->get();
+            $users = User::where('email','!=','admin@local.host')->where('employee_id','==','ID-SSS5')->where('user_status','!=','aktif')->get();
         }else{
             $users = User::where('email','!=','admin@local.host')->where('user_status','!=','tidak aktif')->get();
         }
@@ -67,13 +72,12 @@ class HRController extends Controller
                 ->addColumn('passport', function($user){
                     return ($user->passport != null) ? $user->passport : '-';
                 })
-                ->addColumn('address ', function($user){
-                    $data = json_decode($user->address);
+                ->addColumn('domisili ', function($user){
                     // dd($data->domisili);
-                    return $data->domisili;
+                    return ($user->almt_domisili) ? $user->almt_domisili : '-';
                 })
-                ->addColumn('phone ', function($user){
-                    return ($user->phone  != null) ? $user->phone  : '-';
+                ->addColumn('no_hp ', function($user){
+                    return ($user->tlp_hp  != null) ? $user->tlp_hp  : '-';
                 })
                 ->addColumn('noteUser', function($user){
                     $data = json_decode($user->note);
@@ -155,14 +159,8 @@ class HRController extends Controller
 
     // insert user by upload excel and save file excel in public file/DataKaryawan
     public function uploadData(Request $request){
-        $file = $request->file('file_excel_karyawan');
-        $namaFile = $file->getClientOriginalName();
-        $file->move('DataKaryawan/',$namaFile);
-
-        Excel::import(new UsersImport, public_path('/DataKaryawan/'.$namaFile));
-        $dataRole = Role::where('name','!=','Super Admin')->get();
-        // return view('admin.hr.index',['dataRole'=>$dataRole]);
-        return redirect()->back()->with('dataRole');
+        Excel::import(new UsersImport,  $request->file('file_excel_karyawan'));
+        return redirect()->route('hr');
     }
 
     //download tamplate excel user
@@ -271,11 +269,13 @@ class HRController extends Controller
             'passport' => $request['passport'],
             'npwp' => $request['npwp'],
             'fullname' => $request['fullname'],
-            'address' => json_encode($address),
+            'almt_ktp' => $request['alamat_ktp'],
+            'almt_domisili' => $request['alamat_domisili'],
             'tempat_lahir' => $request['tempat_lahir'],
             'tanggal_lahir' => $salaryDate=date('Y-m-d',strtotime($request['tanggal_lahir'])),
             'email' => $request['email'],
-            'phone' => json_encode($phone),
+            'tlp_rumah' => $request['telp_rumah'],
+            'tlp_hp' => $request['telp_hp'],
             'jabatan' => $request['jabatan'],
             'divisi' => $request['divisi'],
             'agama' => $request['agama'],

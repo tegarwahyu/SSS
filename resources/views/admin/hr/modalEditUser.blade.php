@@ -15,7 +15,7 @@
                 <h3 class="zheading-small text-muted mb-4">{{ __('Edit Karyawan') }}</h3>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('KTP') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('KTP') }}</span>
                     <div class="col-md-3">
                         <input id="ktp" type="text" class="form-control @error('ktp') is-invalid @enderror" name="ktp" value="{{ old('KTP') }}" required autofocus placeholder="{{ __('KTP') }}">
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Passport') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Passport') }}</span>
                     <div class="col-md-3">
                         <input id="passport" type="passport" class="form-control" name="passport" placeholder="{{ __('Passport') }}">
                         <small class="form-text text-muted" style="font-size: 16px;">kolom <b>Passport</b> bisa di kosongkan bila tidak ada</small>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Nama Lengkap') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Nama Lengkap') }}</span>
                     <div class="col-md-3">
                         <textarea id="nama_lengkap" type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="fullname" value="{{ old('first_name') }}" required autofocus placeholder="{{ __('Nama Lengkap') }}"></textarea>
                         <small class="form-text text-muted" style="font-size: 16px;">kolom <b>Nama Lengkap</b> tidak perlu di beri <b>Enter</b></small>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">Alamat Domisili</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">Alamat Domisili</span>
                     <div class="col-md-4">
                         <textarea id="alamat_domisili" type="text" class="form-control @error('alamat_domisili') is-invalid @enderror" name="alamat_domisili" required placeholder="{{ __('Alamat Domisili') }}"></textarea>
 
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">Alamat KTP</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">Alamat KTP</span>
                     <div class="col-md-4">
                         <textarea id="alamat_ktp" type="text" class="form-control @error('alamat_ktp') is-invalid @enderror" name="alamat_ktp" required placeholder="{{ __('Alamat KTP') }}"></textarea>
 
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">Jabatan</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">Jabatan</span>
                     <div class="col-md-3">
                         <select class="form-control selectize" id="jabatan" name="jabatan">
                             <option value="" selected disabled>{{ __('Pilih Jabatan') }}</option>
@@ -153,8 +153,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Status Pernikahan') }}</span>
-                    <div class="col-md-2">
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Status Pernikahan') }}</span>
+                    <div class="col-md-4">
                         <select class="form-control selectize" id="status_pernikahan" name="status_pernikahan">
                             <option value="" selected disabled>{{ __('Pilih Status Pernikahan') }}</option>
                             <option class="form-control" value="TK" >Belum Kawin</option>
@@ -167,27 +167,19 @@
                     <div class="col-md-2">
                         <select class="form-control selectize" id="agama" name="agama">
                             <option value="" selected disabled>{{ __('Pilih Agama') }}</option>
-                            <option class="form-control" value="islam">Islam</option>
-                            <option class="form-control" value="buddha" >Buddha</option>
-                            <option class="form-control" value="hindu" >hindu</option>
-                            <option class="form-control" value="katolik">Katolik</option>
-                            <option class="form-control" value="khonghucu" >Khonghucu</option>
-                            {{--  <option class="form-control" value="Kristen">Kristen</option>  --}}
-                            <option class="form-control" value="protestan">Protestan</option>
+                            <option class="form-control" value="Islam">Islam</option>
+                            <option class="form-control" value="Buddha" >Buddha</option>
+                            <option class="form-control" value="Hindu" >hindu</option>
+                            <option class="form-control" value="Kristen Katolik">Kristen Katolik</option>
+                            <option class="form-control" value="Khonghucu" >Khonghucu</option>
+                            <option class="form-control" value="Kristen">Kristen</option>
+                            <option class="form-control" value="Kristen Protestan">Kristen Protestan</option>
                         </select>
-                    </div>
-                    <div class="col-md-2 container1">
-                        <input id="darah" type="text" class="form-control @error('darah') is-invalid @enderror" name="darah" required placeholder="{{ __('Golongan Darah') }}">
-                        @error('darah')
-                            <span class="invalid-feedback" permission="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Tempat Lahir') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Tempat Lahir') }}</span>
                     <div class="col-md-2 container1">
                         <input id="tempat_lahir" type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" required placeholder="{{ __('Tempat Lahir') }}">
                         @error('tempat_lahir')
@@ -221,7 +213,7 @@
                 </div>
 
                 {{--  <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Nama Ibu Kandung') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Nama Ibu Kandung') }}</span>
                     <div class="col-md-4 container1">
                         <input type="text" class="form-control @error('kerabat') is-invalid @enderror" name="kerabat" required placeholder="{{ __('Nama Ibu Kandung') }}">
                         @error('kerabat')
@@ -233,7 +225,7 @@
                 </div>  --}}
 
                 <div class="form-group row">
-                    <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Password') }}</span>
+                    <span class="col-md-3 col-form-label text-md-right labelclass">{{ __('Password') }}</span>
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="{{ __('Password') }}">
@@ -251,13 +243,21 @@
                         </script>  --}}
                     </div>
                     <div class="col-md-3 container1">
+                        <input id="darah" type="text" class="form-control @error('darah') is-invalid @enderror" name="darah" required placeholder="{{ __('Golongan Darah') }}">
+                        @error('darah')
+                            <span class="invalid-feedback" permission="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    {{--  <div class="col-md-3 container1">
                         <input id="sosmed" type="text" class="form-control @error('sosmed') is-invalid @enderror" name="sosmed" required placeholder="{{ __('Sosial Media') }}">
                         @error('sosmed')
                             <span class="invalid-feedback" permission="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </div>
+                    </div>  --}}
                 </div>
 
                 <div class="form-group">

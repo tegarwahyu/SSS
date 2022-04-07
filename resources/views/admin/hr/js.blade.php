@@ -18,33 +18,29 @@
                 type: "GET",
                 dataType: "JSON",
                 success: function(data){
-                    //var json = $.parseJSON(data);
-                    var alamat = JSON.parse(data.address); //domisili & ktp
-                    var telepon = JSON.parse(data.phone); //rumah & hp
-
-                    console.log(data);
-
+                    //console.log(data[0].roles[0].id)
+                    var jabatan = data[0].roles[0].id;
                     $('.iduser').val(id);
-                    $('#ktp').val(data.ktp);
-                    $('#kk').val(data.kk);
-                    $('#passport').val(data.passport);
-                    $('#npwp').val(data.npwp);
-                    $('#email').val(data.email);
-                    $('#nama_lengkap').val(data.fullname);
-                    $('#alamat_domisili').val(alamat.domisili);
-                    $('#phone_rumah').val(telepon.rumah);
-                    $('#alamat_ktp').val(alamat.ktp);
-                    $('#phone_hp').val(telepon.hp);
-                    $('#jabatan').val(data.jabatan);
-                    $('#divisi').val(data.divisi);
-                    $('#status_pernikahan').val(data.status_pernikahan);
-                    $('#agama').val(data.agama);
-                    $('#darah').val(data.golongan_darah);
-                    $('#tempat_lahir').val(data.tempat_lahir);
-                    $('#tanggal_lahir').val(data.tanggal_lahir);
-                    $('#kewarganegaraan').val(data.kewarganegaraan);
-                    $('#jabatan').val(data.jabatan);
-                    $('#sosmed').val(data.sosmed);
+                    $('#ktp').val(data[0].ktp);
+                    $('#kk').val(data[0].kk);
+                    $('#passport').val(data[0].passport);
+                    $('#npwp').val(data[0].npwp);
+                    $('#email').val(data[0].email);
+                    $('#nama_lengkap').val(data[0].fullname);
+                    $('#alamat_domisili').val(data[0].almt_domisili);
+                    $('#phone_rumah').val(data[0].tlp_rumah);
+                    $('#alamat_ktp').val(data[0].almt_ktp);
+                    $('#phone_hp').val(data[0].tlp_hp);
+                    $('#jabatan').val(jabatan);
+                    $('#divisi').val(data[0].divisi);
+                    $('#status_pernikahan').val(data[0].status_pernikahan);
+                    $('#agama').val(data[0].agama);
+                    $('#darah').val(data[0].golongan_darah);
+                    $('#tempat_lahir').val(data[0].tempat_lahir);
+                    $('#tanggal_lahir').val(data[0].tanggal_lahir);
+                    $('#kewarganegaraan').val(data[0].kewarganegaraan);
+                    $('#jabatan').val(data[0].jabatan);
+                    $('#sosmed').val(data[0].sosmed);
 
                     $('#user-update-form').validate({
                         rules: {
@@ -166,8 +162,8 @@
                     //{data: 'ktp', name: 'ktp', 'title': "{{ __('KTP') }}"},
                     {data: 'fullname', name: 'fullname', 'title': "{{ __('Nama Lengkap') }}"},
                     //{data: 'passport', name: 'passport', 'title': "{{ __('passport') }}"},
-                    //{data: 'address', name: 'address', 'title': "{{ __('address') }}"},
-                    //{data: 'phone', name: 'phone', 'title': "{{ __('phone') }}"},
+                    //{data: 'domisili', name: 'domisili', 'title': "{{ __('address') }}"},
+                    //{data: 'no_hp', name: 'no_hp', 'title': "{{ __('phone') }}"},
                     {data: 'status', name: 'status', 'title': "{{ __('status') }}"},
                     //{data: 'noteUser', name: 'noteUser', 'title': "{{ __('Note') }}"},
                     {data: 'action', name: 'action', 'orderable': false, 'searchable': false, 'title': "{{ __('Action') }}", 'exportable' : false,'printable': false}

@@ -31,7 +31,8 @@ class User extends Authenticatable implements HasMedia
         'tempat_lahir','tanggal_lahir','email','phone','jabatan','divisi',
         'agama','status_pernikahan','address_ktp','kewarganegaraan',
         'kerabat','golongan_darah','sosmed','user_status','note',
-        'ec_families','graduated_from','password','join_date'
+        'ec_families','graduated_from','password','join_date','tlp_hp','tlp_rumah',
+        'almt_domisili','almt_ktp'
     ];
     protected $appends = ['NamaLengkap','full_name'];
 
