@@ -37,13 +37,12 @@ class SalaryController extends Controller
 
     public function uploadSalary(Request $request){
 
-        $file = $request->file('file_excel_salary');
-        $namaFile = $file->getClientOriginalName();
-        $file->move('DataSalary/',$namaFile);
+        // $file = $request->file('file_excel_salary');
+        // $namaFile = $file->getClientOriginalName();
+        // $file->move('DataSalary/',$namaFile);
 
         $salaryDate=date('Y-m-d H:i:s',strtotime($request->salary_periode));
-        // dd($salaryDate);
-        Excel::import(new SalaryImport($salaryDate), public_path('/DataSalary/'.$namaFile));
+        Excel::import(new SalaryImport($salaryDate), $request->file('file_excel_salary'));
 
         return redirect()->back()->with('SuccessImportData', 'Data berhasil di import ke Database');
 
@@ -62,17 +61,17 @@ class SalaryController extends Controller
                     }
                 })
                 ->addColumn('pendapatan', function($data){
-                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
+                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel;
                     return $pendapatan;
                 })
                 ->addColumn('potongan', function($data){
-                    $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21;
+                    $potongan = $data->late_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21;
                     // dd($potongan);
                     return $potongan;
                 })
                 ->addColumn('total', function($data){
-                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
-                    $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21 ;
+                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel;
+                    $potongan = $data->late_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21 ;
                     $total = $pendapatan - $potongan;
                     return $total;
                 })
@@ -97,8 +96,7 @@ class SalaryController extends Controller
         $dataSalaryById = Salary::where('id',$id)->get();
         // menyocokkan data salary by employee_id dari salary ke user
         $dataUser = User::where('employee_id',$dataSalaryById[0]->employee_id)->get();
-        $jabatanUser = Role::where('id',$dataUser[0]->jabatan)->get('name');
-        // dd();
+        $jabatanUser = Role::where('name',$dataUser[0]->jabatan)->get('name');
         // kondisi jika data kosong
         if($dataUser->isEmpty()){
             return redirect()->back()->with('EmptyData', 'Maaf Slip Gaji yang anda cari tidak ada di Database');

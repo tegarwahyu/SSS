@@ -1,10 +1,9 @@
 {{--  form upload user  --}}
 <div id="formUpload" style="display: none;">
-    <form id="form-upload" action="{{ route('uploadData') }}" method="POST" enctype="multipart/form-data">
+    <form id="form-upload" action="{{ route('uploadData') }}" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id">
         @csrf
         <h3 class="zheading-small text-muted mb-4">{{ __('Upload File Kepegawaian') }}</h3>
-        @csrf
         <div class="form-group row">
             <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Upload File') }}</span>
             <div class="col-md-6">

@@ -27,9 +27,9 @@ class User extends Authenticatable implements HasMedia
      */
 
     protected $fillable = [
-        'employee_id','ktp','kk','passport','npwp','fullname','address',
-        'tempat_lahir','tanggal_lahir','email','phone','jabatan','divisi',
-        'agama','status_pernikahan','address_ktp','kewarganegaraan',
+        'employee_id','ktp','kk','passport','npwp','fullname',
+        'tempat_lahir','tanggal_lahir','email','jabatan','divisi',
+        'agama','status_pernikahan','almt_domisili','kewarganegaraan',
         'kerabat','golongan_darah','sosmed','user_status','note',
         'ec_families','graduated_from','password','join_date','tlp_hp','tlp_rumah',
         'almt_domisili','almt_ktp'

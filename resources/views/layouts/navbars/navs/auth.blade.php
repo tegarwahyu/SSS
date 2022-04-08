@@ -58,7 +58,7 @@
                         <span id="menu_id" class="nav-link-inner--text">{{ __('Salary') }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        @hasanyrole('Super Admin|HR Staff|HR Manager')
+                        @hasanyrole('Super Admin|HR Manager')
                         <a  class="dropdown-item" href="{{ route('salary') }}"><i class="ni ni-chart-bar-32"></i><span>{{ __('List Salary') }}</span></a>
                         @endhasanyrole
                         @hasanyrole('Super Admin|HR Staff|HR Manager|Collection Staff|Collection Manager')

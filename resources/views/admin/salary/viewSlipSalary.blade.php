@@ -45,7 +45,7 @@
                     </td>
                     <td><?php echo date("M Y");?><br>
                         <?php echo $jabatanUser[0]->name ;?><br>
-                        -
+                        <?php echo $dataUser->join_date; ?>
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@
                         Rp  <?php echo ($dataSalary->bpjs_ks == null || $dataSalary->bpjs_ks == 0) ?  '-' : $dataSalary->bpjs_ks;?><br>
                         Rp  <?php echo ($dataSalary->pph_21 == null || $dataSalary->pph_21 == 0) ?  '-' : $dataSalary->pph_21;?><br><br><br><br>
                         _______________________+<br><br>
-                        Rp  </strong><?php echo ($dataSalary->late_reduce + $dataSalary->permit_reduce + $dataSalary->absent_reduce + $dataSalary->other_reduce + $dataSalary->cash_advance_reduce + $dataSalary->bpjs_tk + $dataSalary->bpjs_ks + $dataSalary->pph_21)?></strong>
+                        Rp  </strong><?php echo ($dataSalary->late_reduce + $dataSalary->absent_reduce + $dataSalary->other_reduce + $dataSalary->cash_advance_reduce + $dataSalary->bpjs_tk + $dataSalary->bpjs_ks + $dataSalary->pph_21)?></strong>
                     </td>
                 </tr>
                 <tr style="background-color: #7ac0e9 !important;">

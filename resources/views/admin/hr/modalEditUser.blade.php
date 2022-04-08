@@ -26,7 +26,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <input id="kk" type="text" class="form-control @error('kk') is-invalid @enderror" name="kk" value="{{ old('KK') }}" required autofocus placeholder="{{ __('KK') }}">
+                        <input id="kk" type="text" class="form-control @error('kk') is-invalid @enderror" name="kk" value="{{ old('KK') }}" autofocus placeholder="{{ __('KK') }}">
 
                         @error('kk')
                             <span class="invalid-feedback" permission="alert">
@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="col-md-2 container1">
-                        <input id="phone_rumah" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone_rumah" required placeholder="{{ __('Telp. Rumah') }}">
+                        <input id="phone_rumah" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone_rumah"  placeholder="{{ __('Telp. Rumah') }}">
                         @error('phone')
                             <span class="invalid-feedback" permission="alert">
                                 <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
                         </select>
                     </div>
                     <div class="col-md-3 container1">
-                        <input id="divisi" type="text" class="form-control @error('divisi') is-invalid @enderror" id="divisi" name="divisi" required placeholder="{{ __('Divisi') }}">
+                        <input id="divisi" type="text" class="form-control @error('divisi') is-invalid @enderror" id="divisi" name="divisi" placeholder="{{ __('Divisi') }}">
                         @error('divisi')
                             <span class="invalid-feedback" permission="alert">
                                 <strong>{{ $message }}</strong>

@@ -59,11 +59,30 @@ class UsersImport implements ToModel, SkipsEmptyRows, WithValidation ,WithHeadin
     public function rules(): array
     {
         return [
+            // 'employee_id' => 'nullable|unique:users,employee_id',
+            // 'kk' => 'nullable|unique:users,kk',
+            // 'npwp' => 'nullable|unique:users,npwp',
+            // 'passport' => 'nullable|unique:users,passport',
             'employee_id' => 'nullable|unique:users,employee_id',
+            'fullname' => 'nullable|unique:users,fullname',
+            'join_date'=> 'nullable|unique:users,join_date',
+            'tempat_lahir' => 'nullable|unique:users,tempat_lahir',
+            'tanggal_lahir' =>'nullable|unique:users,tanggal_lahir',
+            'almt_ktp' => 'nullable|unique:users,almt_ktp',
+            'almt_domisili' =>'nullable|unique:users,almt_domisili',
+            'tlp_rumah' => 'nullable|unique:users,tlp_rumah',
+            'tlp_hp' => 'nullable|unique:users,tlp_hp',
+            'ktp' => 'nullable|unique:users,ktp',
             'kk' => 'nullable|unique:users,kk',
             'npwp' => 'nullable|unique:users,npwp',
             'passport' => 'nullable|unique:users,passport',
-
+            'email' => 'nullable|unique:users,email',
+            'jabatan' => 'nullable|unique:users,jabatan',
+            'divisi' => 'nullable|unique:users,divisi',
+            'agama' => 'nullable|unique:users,agama',
+            'status_pernikahan' => 'nullable|unique:users,status_pernikahan',
+            'kewarganegaraan' => 'nullable|unique:users,kewarganegaraan',
+            'golongan_darah' =>'nullable|unique:users,golongan_darah'
         ];
     }
 
@@ -71,8 +90,28 @@ class UsersImport implements ToModel, SkipsEmptyRows, WithValidation ,WithHeadin
     public function customValidationMessages()
     {
         return [
-            'employee_id' => 'employee_id sama',
-            'email.unique' => 'email sama',
+            // 'employee_id' => 'employee_id sama',
+            // 'email.unique' => 'email sama',
+            // 'employee_id' => 'nulla
+            'fullname' => 'employee_id sama',
+            'join_date'=> 'employee_id sama',
+            'tempat_lahir' => 'employee_id sama',
+            'tanggal_lahir' => 'employee_id sama',
+            'almt_ktp' => 'employee_id sama',
+            'almt_domisili' => 'employee_id sama',
+            'tlp_rumah' => 'employee_id sama',
+            'tlp_hp' => 'employee_id sama',
+            'ktp' => 'employee_id sama',
+            'kk' => 'employee_id sama',
+            'npwp' => 'employee_id sama',
+            'passport' => 'employee_id sama',
+            'email' => 'employee_id sama',
+            'jabatan' => 'employee_id sama',
+            'divisi' => 'employee_id sama',
+            'agama' => 'employee_id sama',
+            'status_pernikahan' => 'employee_id sama',
+            'kewarganegaraan' => 'employee_id sama',
+            'golongan_darah' => 'employee_id sama',
         ];
     }
 

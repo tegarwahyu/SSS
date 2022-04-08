@@ -243,8 +243,6 @@ class HRController extends Controller
             'fullname'=>'required|string|max:255|min:3',
             'email' =>'required|string|email|max:255|min:3|unique:users',
             'passport' =>'string|nullable',
-            'phone' =>'string|required',
-            'alamat' =>'string|required',
             'password'=>'required|min:6|confirmed',
             'sosmed'=>'string|nullable',
             // 'ec_families'=>'string|nullable',
@@ -252,15 +250,15 @@ class HRController extends Controller
             // 'graduated_from'=>'string|nullable',
 
         ]);
-        $phone = [
-            'rumah'=>$request['phone_rumah'],
-            'hp'=>$request['phone_hp']
-        ];
+        // $phone = [
+        //     'rumah'=>$request['phone_rumah'],
+        //     'hp'=>$request['phone_hp']
+        // ];
 
-        $address = [
-            'domisili'=>$request['alamat_domisili'],
-            'ktp'=>$request['alamat_ktp']
-        ];
+        // $address = [
+        //     'domisili'=>$request['alamat_domisili'],
+        //     'ktp'=>$request['alamat_ktp']
+        // ];
 
         $data = [
             'employee_id' => $idUser,
@@ -309,8 +307,6 @@ class HRController extends Controller
             'fullname'=>'required|string|max:255|min:3',
             'email' =>'required|string|email|max:255|min:3|unique:users',
             'passport' =>'string|nullable',
-            'phone' =>'string|required',
-            'alamat' =>'string|required',
             'password'=>'required|min:6|confirmed',
             'sosmed'=>'string|nullable',
             // 'ec_families'=>'string|nullable',
@@ -323,10 +319,19 @@ class HRController extends Controller
             // 'employee_id' => $idUser,
             'fullname' => ($request['fullname'] !== null) ? $request['fullname'] : $getDataUser->fullname,
             'email' => ($request['email'] !== null) ? $request['email'] : $getDataUser->email,
-            'phone' => ($request['phone'] !== null) ? $request['phone'] : $getDataUser->phone,
+            'tlp_hp' => ($request['phone_hp'] !== null) ? $request['phone_hp'] : $getDataUser->tlp_hp,
+            'tlp_rumah' => ($request['phone_rumah'] !== null) ? $request['phone_rumah'] : $getDataUser->tlp_rumah,
             'passport' => ($request['passport'] !== null) ?$request['passport'] : $getDataUser->passport,
+            'ktp' => ($request['ktp'] !== null) ?$request['ktp'] : $getDataUser->ktp,
+            'kk' => ($request['kk'] !== null) ?$request['kk'] : $getDataUser->kk,
+            'npwp' => ($request['npwp'] !== null) ?$request['npwp'] : $getDataUser->npwp,
             'jabatan' => ($request['jabatan'] !== null) ?$request['jabatan'] : $getDataUser->jabatan,
-            'address' => ($request['alamat'] !== null) ?$request['alamat'] : $getDataUser->address,
+            'almt_ktp' => ($request['alamat_ktp'] !== null) ?$request['alamat_ktp'] : $getDataUser->almt_ktp,
+            'status_pernikahan' => ($request['status_pernikahan'] !== null) ?$request['status_pernikahan'] : $getDataUser->status_pernikahan,
+            'agama' => ($request['agama'] !== null) ?$request['agama'] : $getDataUser->agama,
+            'kewarganegaraan' => ($request['kewarganegaraan'] !== null) ?$request['kewarganegaraan'] : $getDataUser->kewarganegaraan,
+            'golongan_darah' => ($request['darah'] !== null) ?$request['darah'] : $getDataUser->golongan_darah,
+            'almt_domisili' => ($request['alamat_domisili'] !== null) ?$request['alamat_domisili'] : $getDataUser->almt_domisili,
             'password' => ($request['password'] !== null) ?$request['password'] : $getDataUser->password,
         ];
         $getDataUser->update($data);
