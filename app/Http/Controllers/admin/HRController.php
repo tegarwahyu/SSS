@@ -53,9 +53,18 @@ class HRController extends Controller
     //data table user
     public function getDataUser($id){
         if($id == 1){
-            $users = User::where('email','!=','admin@local.host')->where('employee_id','==','ID-SSS2')->where('user_status','!=','aktif')->get();
+            // $users = User::where('email','!=','admin@local.host')->where('user_status','!=','aktif')->get();
+            $users = User::whereNotIn('fullname',['Super Admin'])
+            ->whereNotIn('fullname',['akun hrd'])
+            ->where('user_status','!=','aktif')
+            ->orderBy('id', 'ASC')
+            ->get();
         }else{
-            $users = User::where('email','!=','admin@local.host')->where('user_status','!=','tidak aktif')->get();
+            $users = User::whereNotIn('fullname',['Super Admin'])
+            ->whereNotIn('fullname',['akun hrd'])
+            ->where('user_status','!=','tidak aktif')
+            ->orderBy('id', 'ASC')
+            ->get();
         }
         // dd($users);
         $tb = Datatables::of($users)

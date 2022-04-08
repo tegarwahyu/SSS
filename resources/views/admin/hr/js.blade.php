@@ -163,7 +163,7 @@
                     {data: 'fullname', name: 'fullname', 'title': "{{ __('Nama Lengkap') }}"},
                     //{data: 'passport', name: 'passport', 'title': "{{ __('passport') }}"},
                     //{data: 'domisili', name: 'domisili', 'title': "{{ __('address') }}"},
-                    //{data: 'no_hp', name: 'no_hp', 'title': "{{ __('phone') }}"},
+                    {data: 'jabatan', name: 'jabatan', 'title': "{{ __('Jabatan') }}"},
                     {data: 'status', name: 'status', 'title': "{{ __('status') }}"},
                     //{data: 'noteUser', name: 'noteUser', 'title': "{{ __('Note') }}"},
                     {data: 'action', name: 'action', 'orderable': false, 'searchable': false, 'title': "{{ __('Action') }}", 'exportable' : false,'printable': false}
@@ -179,7 +179,7 @@
                         "className": "text-center",
                 }
                 ],
-            "order": [[ 3, 'asc' ]]
+            "order": [[ 0, 'asc' ]]
         });
 
         // fungsi confirm non aktif user

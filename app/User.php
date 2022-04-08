@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Auth;
 //spatie media library
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -34,7 +35,7 @@ class User extends Authenticatable implements HasMedia
         'ec_families','graduated_from','password','join_date','tlp_hp','tlp_rumah',
         'almt_domisili','almt_ktp'
     ];
-    protected $appends = ['NamaLengkap','full_name'];
+    protected $appends = ['NamaLengkap','full_name_user'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,9 +62,9 @@ class User extends Authenticatable implements HasMedia
         return $this->fullname;
     }
 
-    public function getFullNameAttribute()
+    public function getFullNameUserAttribute()
     {
-        // return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+        return ucfirst($this->fullname);
         // return $this->full_name;
     }
 

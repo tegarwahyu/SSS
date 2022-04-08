@@ -16,8 +16,8 @@
             <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0 menu-name-user">Selamat Datang {{ auth()->user()->fullname }}</h6>
             </div>
-            <a href="#" class="dropdown-item">
-            {{--  <a href="{{ route('profile', auth()->user()->id) }}" class="dropdown-item">  --}}
+            {{--  <a href="#" class="dropdown-item">  --}}
+            <a href="{{ route('profile', auth()->user()->id) }}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span class="menu-users">{{ __('My profile') }}</span>
             </a>

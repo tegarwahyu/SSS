@@ -1,11 +1,12 @@
 @extends('layouts.backend', ['title' => __('User Profile')])
 
 @section('content')
-    @include('users.partials.header', [
-        'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
-        'class' => 'col-lg-7'
-    ])
+    <div class="bg-gradient-primary pt-5 default-color" style="padding-bottom: 4rem !important;">
+        <span class="mask opacity-8"></span>
+        <div class="container-fluid d-flex align-items-center" style="margin-top: 70px;">
+
+        </div>
+    </div>
     <style>
         .alert {
             width: 500px !important;

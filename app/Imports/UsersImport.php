@@ -33,10 +33,10 @@ class UsersImport implements ToModel, SkipsEmptyRows, WithValidation ,WithHeadin
                 'tempat_lahir' => $row['tpt_lahir'],
                 'tanggal_lahir' => $dateBirth->format('Y-m-d'),
                 'almt_domisili' => $row['alamat_domisili'],
-	        'almt_ktp' => $row['alamat_ktp'],
-		'tlp_rumah' => $row['telp_rumah'],
+	            'almt_ktp' => $row['alamat_ktp'],
+		        'tlp_rumah' => $row['telp_rumah'],
                 'tlp_hp' => $row['telp_hp'],
-		'ktp' => $row['ktp'],
+		        'ktp' => $row['ktp'],
                 'kk' => $row['kk'],
                 'npwp' => $row['npwp'],
                 'passport' => $row['passport'],
@@ -49,7 +49,7 @@ class UsersImport implements ToModel, SkipsEmptyRows, WithValidation ,WithHeadin
                 'password' => $row['employee_id']]);
         $role_r = Role::where('name', '=', $row['jabatan'])->get();
         return $user->assignRole($role_r);
-        	
+
     }
 
     // //rule untuk mengecek data yang sama stop ketika ada yang sama atau ada validasi yang error

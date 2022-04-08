@@ -1,3 +1,9 @@
+<style>
+    .alert {
+        width: 500px !important;
+        margin: 25px auto !important;
+    }
+</style>
 <div class="col-xl-12 order-xl-1">
     <div class="card bg-secondary shadow">
         <div class="card-header bg-white border-0">
@@ -12,6 +18,16 @@
                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false" ><i class="ni ni-calendar-grid-58 mr-2"></i>Messages</a>
                         </li> -->
                     </ul>
+                    @if(session()->has('SuccessChangePassword'))
+                    <div class="alert alert-success">
+                        {{ session()->get('SuccessChangePassword') }}
+                    </div>
+                    @endif
+                    <script>
+                        setTimeout(function() {
+                            $('.alert').fadeOut('fast');
+                        }, 4500); // <-- time in milliseconds
+                    </script>
             <div class="row align-items-center">
                 <div class="card-body">
                     <div class="tab-content" id="myTabContent">
@@ -36,7 +52,7 @@
                                         <div class="form-group row">
                                             <span class="col-md-2 col-form-label text-md-right">{{ __('Nama Lengkap') }}</span>
                                             <div class="col-md-5">
-                                                <input id="first_name" type="text" class="form-control form-control-alternative @error('first_name') is-invalid @enderror" name="first_name" value="{{ auth()->user()->first_name }}" required autofocus placeholder="{{ __('First name') }}" disabled="">
+                                                <input id="first_name" type="text" class="form-control form-control-alternative @error('first_name') is-invalid @enderror" name="first_name" value="{{ Auth::user()->full_name_user }}" required autofocus placeholder="{{ __('First name') }}" disabled="">
 
                                                 @error('first_name')
                                                     <span class="invalid-feedback" permission="alert">
@@ -45,7 +61,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-5">
-                                                <input id="last_name" type="text" class="form-control form-control-alternative @error('last_name') is-invalid @enderror" name="last_name" value="{{ auth()->user()->last_name }}" required placeholder="{{ __('Last name') }}" disabled="">
+                                                <input id="last_name" type="text" class="form-control form-control-alternative @error('last_name') is-invalid @enderror" name="jabatan" value="{{ auth()->user()->jabatan }}" required placeholder="{{ __('Jabatan') }}" disabled="">
 
                                                 @error('last_name')
                                                     <span class="invalid-feedback" permission="alert">
@@ -57,7 +73,7 @@
                                         <div class="form-group row">
                                             <span class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</span>
                                             <div class="col-md-10">
-                                                <input id="password" type="password" class="form-control form-control-alternative @error('password') is-invalid @enderror" name="password" value="" required autofocus placeholder="Ganti Password">
+                                                <input id="password" type="password" class="form-control form-control-alternative @error('password') is-invalid @enderror" name="password" value="" required autofocus placeholder="Masukkan Password Baru Anda">
                                                 <!-- <small></small> -->
 
                                                 @error('password')
@@ -70,7 +86,7 @@
                                         <div class="form-group row">
                                             <span class="col-md-2 col-form-label text-md-right">{{ __('Contact Informations') }}</span>
                                             <div class="col-md-5">
-                                                <input id="email" type="email" class="form-control form-control-alternative @error('email') is-invalid @enderror" name="first_name" value="{{ auth()->user()->email }}" required placeholder="{{ __('Email') }}" disabled="">
+                                                <input id="email" type="email" class="form-control form-control-alternative @error('email') is-invalid @enderror" name="email" value="{{ auth()->user()->email }}" required placeholder="{{ __('Email') }}" disabled="">
 
                                                 @error('email')
                                                     <span class="invalid-feedback" permission="alert">
@@ -79,7 +95,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-5">
-                                                <input id="phone" type="text" class="form-control form-control-alternative @error('phone') is-invalid @enderror" name="phone" value="{{ auth()->user()->phone }}" placeholder="{{ __('Phone') }}" disabled="">
+                                                <input id="phone" type="text" class="form-control form-control-alternative @error('phone') is-invalid @enderror" name="phone" value="{{ auth()->user()->tlp_hp }}" placeholder="{{ __('Phone') }}" disabled="">
 
                                                 @error('phone')
                                                     <span class="invalid-feedback" permission="alert">
