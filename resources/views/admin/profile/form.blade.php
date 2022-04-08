@@ -18,7 +18,7 @@
                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                 <form autocomplete="off" class="ajax-form" action="{{ route('editPassword') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="id" id="id" value=''<?php $dataUser?>'''>
+                                    <input type="hidden" name="id" id="id" value="{{ isset($dataUser->id) ?? $dataUser->id }}">
                                     <input type="hidden" name="user_id" id="user-id" value="{{ auth()->user()->id }}">
 
                                     <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>

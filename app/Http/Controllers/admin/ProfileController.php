@@ -26,7 +26,6 @@ class ProfileController extends Controller
 
     public function viewProfileById($id){
         $dataUserById = User::where('id',$id)->get();
-        // dd($dataUserById);
         return view('admin.profile.index',['dataUser'=>$dataUserById]);
     }
 

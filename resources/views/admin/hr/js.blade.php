@@ -18,8 +18,8 @@
                 type: "GET",
                 dataType: "JSON",
                 success: function(data){
-                    //console.log(data[0])
-                    //var jabatan = data[0].roles[0];
+                    console.log(data[0].roles[0].id)
+                    var jabatan = data[0].roles[0].id;
                     $('.iduser').val(id);
                     $('#ktp').val(data[0].ktp);
                     $('#kk').val(data[0].kk);

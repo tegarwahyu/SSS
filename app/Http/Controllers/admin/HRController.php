@@ -53,7 +53,7 @@ class HRController extends Controller
     //data table user
     public function getDataUser($id){
         if($id == 1){
-            $users = User::where('email','!=','admin@local.host')->where('employee_id','==','ID-SSS5')->where('user_status','!=','aktif')->get();
+            $users = User::where('email','!=','admin@local.host')->where('employee_id','==','ID-SSS2')->where('user_status','!=','aktif')->get();
         }else{
             $users = User::where('email','!=','admin@local.host')->where('user_status','!=','tidak aktif')->get();
         }
