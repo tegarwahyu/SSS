@@ -51,7 +51,6 @@
                 </li>
                 @endhasanyrole
 
-                @hasanyrole('Super Admin|HR Staff|HR Manager|Collection Staff|Collection Manager')
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-link-icon dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="ni ni-chart-bar-32"></i>
@@ -61,12 +60,9 @@
                         @hasanyrole('Super Admin|HR Manager')
                         <a  class="dropdown-item" href="{{ route('salary') }}"><i class="ni ni-chart-bar-32"></i><span>{{ __('List Salary') }}</span></a>
                         @endhasanyrole
-                        @hasanyrole('Super Admin|HR Staff|HR Manager|Collection Staff|Collection Manager')
                         <a  class="dropdown-item" href="{{route('salaryById')}}"><i class="ikon ni ni-lock-circle-open"></i><span>{{ __('Salary Ku') }}</span></a>
-                        @endhasanyrole
                     </div>
                 </li>
-                @endhasanyrole
 
 
 

@@ -46,7 +46,6 @@ class SalaryImport implements ToModel, SkipsEmptyRows, WithValidation, WithHeadi
             'pph_21' => $row['pph_21'],
             'salary_periode' =>$dateConvert,
         ]);
-
     }
 
     // //rule untuk mengecek data yang sama stop ketika ada yang sama atau ada validasi yang error

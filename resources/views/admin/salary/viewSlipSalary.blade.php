@@ -19,6 +19,8 @@
 
     <div class="container">
         <div class="table-responsive-md">
+
+
             <table class="table table-borderless" border="1" style="background-color:#cde6f5 !important; table-layout: fixed;
             overflow: hidden;
             text-overflow: ellipsis; width: max-content;">
@@ -35,7 +37,11 @@
                     <td>Urut  <br>
                         Nama  <br>
                         Employee ID <br></td>
-                    <td>- <br>
+                    <td><?php foreach($noUrut as $i => $k){
+                        if ($dataUser->employee_id == $noUrut[$i]->employee_id){
+                            echo $i+1;
+                        }
+                    }?><br>
                         <?php echo $dataUser->fullname ;?><br>
                         <?php echo $dataUser->employee_id ;?><br>
                     </td>

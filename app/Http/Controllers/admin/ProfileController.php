@@ -51,6 +51,11 @@ class ProfileController extends Controller
                     $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
                     return $pendapatan;
                 })
+                ->addColumn('periode', function($data){
+
+                    // dd();
+                    return date("F Y", strtotime($data->salary_periode));
+                })
                 ->addColumn('potongan', function($data){
                     $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21;
                     // dd($potongan);

@@ -14,6 +14,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class SalaryController extends Controller
 {
@@ -28,7 +29,10 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        return view('admin.salary.index');
+        if(Auth::user()->jabatan === 'HR Manager'||Auth::user()->jabatan === 'Super Admin') {
+            return view('admin.salary.index');
+        }
+        return view('admin.dashboard.index');
     }
 
     public function viewFormSalary(){
@@ -49,6 +53,7 @@ class SalaryController extends Controller
     }
 
     public function getDataSalary($id){
+
         $querys =  DB::select('SELECT * FROM salary WHERE MONTH(salary_periode) ='.$id);
         $tb = Datatables::of($querys)
         ->addIndexColumn()
@@ -97,20 +102,31 @@ class SalaryController extends Controller
         // menyocokkan data salary by employee_id dari salary ke user
         $dataUser = User::where('employee_id',$dataSalaryById[0]->employee_id)->get();
         $jabatanUser = Role::where('name',$dataUser[0]->jabatan)->get('name');
+
+        $countUser =  User::whereNotIn('fullname',['Super Admin'])
+        ->whereNotIn('fullname',['akun hrd'])
+        ->where('user_status','!=','tidak aktif')
+        ->orderBy('id', 'ASC')
+        ->get();
+        // for($i=1;$i<=count($countUser);$i++){
+        //     echo $i;
+        // }
+        // dd($i);
+
         // kondisi jika data kosong
         if($dataUser->isEmpty()){
             return redirect()->back()->with('EmptyData', 'Maaf Slip Gaji yang anda cari tidak ada di Database');
         }else{
             // print pdf salary
-            $pdf = PDF::loadView('admin.salary.viewSlipSalary',
-            [
-                'dataSalary'=>$dataSalaryById[0],
-                'dataUser'=>$dataUser[0],
-                'jabatanUser'=>$jabatanUser
-            ])->setPaper('a4', 'landscape');
-            return $pdf->stream('salary-'.$dataUser[0]->employee_id.'.pdf',array('Attachment'=>false));
+            // $pdf = PDF::loadView('admin.salary.viewSlipSalary',
+            // [
+            //     'dataSalary'=>$dataSalaryById[0],
+            //     'dataUser'=>$dataUser[0],
+            //     'jabatanUser'=>$jabatanUser
+            // ])->setPaper('a4', 'landscape');
+            // return $pdf->stream('salary-'.$dataUser[0]->employee_id.'.pdf',array('Attachment'=>false));
             // see in html
-            // return view('admin.salary.viewSlipSalary',['dataSalary'=>$dataSalaryById[0],'dataUser'=>$dataUser[0],'jabatanUser'=>$jabatanUser]);
+            return view('admin.salary.viewSlipSalary',['dataSalary'=>$dataSalaryById[0],'dataUser'=>$dataUser[0],'jabatanUser'=>$jabatanUser,'noUrut'=>$countUser]);
         }
 
     }
@@ -120,17 +136,7 @@ class SalaryController extends Controller
         return Response()->download($filepath);
     }
 
-    // return view('admin.profile.salaryku');
     public function viewDataSalaryById(){
-        // $pdf = PDF::loadView('admin.laporan.dupak.index',
-        //     [
-        //         'user'=>$user,
-        //         'dupak_pengawasan_lama'=>$dupak_pengawasan_lama,
-        //         'dupak_pengawasan_baru'=>$dupak_pengawasan_baru,
-        //         'dupak_pendidikan'=>$dupak_pendidikan->pluck('dupak')[0],
-        //         'dupak_pengawasan_spt'=>$dupak_pengawasan_spt
-        //     ]);
-        // return $pdf->stream('dupak-'.$user_id.'.pdf',array('Attachment'=>1));
         return view('admin.salary.salaryku');
     }
 

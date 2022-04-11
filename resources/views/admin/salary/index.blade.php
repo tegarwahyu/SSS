@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 @include('admin.salary.form_cari')
            </div>
-           
+
            <div class="card shadow" id="salary-card" style="display: none">
                 <div class="card-body">
                     <div class="text-center">
