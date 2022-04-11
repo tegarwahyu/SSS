@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class HRController extends Controller
 {
@@ -36,9 +37,7 @@ class HRController extends Controller
     public function editUser($id)
     {
         // $dataUser = User::find($id);
-        // $dataUser = User::where('id',$id)->with(['roles' => function ($query) {
-        //                 $query->where('name', '=', 'jabatan');
-        //             }])->get();
+        // $dataUser = DB::select("SELECT * from users where id = '$id' left join roles where role.name '==' users.jabatan");
         $dataUser = User::where('id','=',$id)->with('roles')->get();
         // dd($dataUser);
         // return view('admin.hr.uploadFile',['dataUser'=>$dataUser]);

@@ -26,8 +26,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button id="btn-close_modal" type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                  <button id="btn-note_deactive_user" type="button" class="btn btn-success">Simpan</button>
+                  <button id="btn-close_modal" type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                  <button id="btn-note_deactive_user" type="button" class="btn btn-danger">Non Aktifkan</button>
                 </div>
             </div>
         </div>

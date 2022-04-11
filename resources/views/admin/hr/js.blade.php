@@ -11,7 +11,7 @@
             //console.log(id);
             $('#modalEditUser').modal({backdrop: 'static', keyboard: true, show: true})
             $('#modalEditUser').modal('show');
-
+            $('#user-update-form')[0].reset();
             var url = "hr/editUser/" +id ;
             $.ajax({
                 url: url,
@@ -31,6 +31,7 @@
                     $('#phone_rumah').val(data[0].tlp_rumah);
                     $('#alamat_ktp').val(data[0].almt_ktp);
                     $('#phone_hp').val(data[0].tlp_hp);
+                    //$('#jabatan').data('selectize').setValue(data[0].roles[0].id);
                     $('#jabatan').val(jabatan);
                     $('#divisi').val(data[0].divisi);
                     $('#status_pernikahan').val(data[0].status_pernikahan);
@@ -144,6 +145,7 @@
             processing: true,
             serverSide: true,
             deferRender: true,
+            "pageLength": 25,
             ajax: "{{ url('/admin/hr/getDataUser') }}" +'/' + statusUser,
             columns: [
                 {
@@ -200,12 +202,12 @@
             console.log(dataNote);
             $.confirm({
                 title: 'Perhatian!',
-                content: 'Apakah anda yakin dengan note tersebut? Jika anda yakin maka status pegawai akan berubah!',
-                autoClose: 'Batal|10000',
+                content: 'Apa anda yakin menonaktifkan karyawan ini!',
+                autoClose: 'Tidak|10000',
                 buttons: {
                     deleteUser: {
-                        text: 'Simpan Note',
-                        btnClass: 'btn-green',
+                        text: 'Ya',
+                        btnClass: 'btn-danger',
                         action: function () {
                             url = "{{ route('noteDeactiveUser') }}";
                                 $.ajax({
@@ -230,7 +232,7 @@
 
                         }
                     },
-                    Batal: function () {
+                    Tidak: function () {
                         $.alert('Proses telah dibatalkan !');
                         $('#NoteModal').modal('hide');
                         $("#note").val("");

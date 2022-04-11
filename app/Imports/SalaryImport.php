@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class SalaryImport implements ToModel, WithHeadingRow
+class SalaryImport implements ToModel, SkipsEmptyRows, WithValidation, WithHeadingRow
 {
 
     public function  __construct($salaryDate)
@@ -45,5 +47,21 @@ class SalaryImport implements ToModel, WithHeadingRow
             'salary_periode' =>$dateConvert,
         ]);
 
+    }
+
+    // //rule untuk mengecek data yang sama stop ketika ada yang sama atau ada validasi yang error
+    public function rules(): array
+    {
+        return [
+            'salary_periode' => 'nullable|unique:salary,salary_periode',
+        ];
+    }
+
+    // //validasi sama akan memberika messages
+    public function customValidationMessages()
+    {
+        return [
+	        'salary_periode' => 'salary_periode sama',
+        ];
     }
 }

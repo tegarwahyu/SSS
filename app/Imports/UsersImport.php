@@ -24,9 +24,9 @@ class UsersImport implements ToModel, SkipsEmptyRows, WithValidation ,WithHeadin
 
     public function model(array $row)
     {
-	$dateJoin = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['join_date']);
-	$dateBirth = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tgl_lahir']);
-	$user = new User([
+	    $dateJoin = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['join_date']);
+	    $dateBirth = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tgl_lahir']);
+	    $user = new User([
                 'employee_id' => $row['employee_id'],
                 'fullname' => $row['fullname'],
                 'join_date'=> $dateJoin->format('Y-m-d'),
