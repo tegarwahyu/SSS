@@ -44,6 +44,7 @@
 @include('layouts.footers.auth')
 @endsection
 @push('css')
+    <link href="{{ asset('assets/vendor/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/datatables.min.css') }}">
 @endpush
 @push('js')
@@ -51,4 +52,5 @@
     <script src="{{ asset('assets/vendor/jquery/jquery-validate.bootstrap-tooltip.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/handlebars.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/js/standalone/selectize.min.js') }}"></script>
 @endpush

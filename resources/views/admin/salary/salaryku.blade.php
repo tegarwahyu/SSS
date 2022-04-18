@@ -14,7 +14,7 @@
                 <div class="card card-profile shadow">
                     <div class="card-body">
                       <div class="text-center">
-                          <h3>{{ __('Salary Ku') }}</h3>
+                          <h3>{{ __('My Salary') }}</h3>
                       </div>
                       <div class="table-responsive">
                             <table class="table table-striped table-sm ajax-table" id="user-salary-table">
@@ -60,9 +60,16 @@
                                 {data: 'total', name: 'total', title: 'Total'},
                                 {data: 'action', name: 'action', orderable: false, searchable: false,title: 'Action'},
                           ],
-                          columnDefs: [
-                              { "width": "150px", "targets": 3 },
-                              { "searchable": false, "orderable": false, "targets": 0 },
+                          'columnDefs': [
+                                  {
+                                      "targets": '_all', // your case first column
+                                      "className": "text-center",
+                                      "width": "4%"
+                              },
+                              {
+                                      "targets": 3,
+                                      "className": "text-center",
+                              }
                               ],
                           "order": [[ 1, 'asc' ]],
                           // $('#salary-table').ajax.reload();

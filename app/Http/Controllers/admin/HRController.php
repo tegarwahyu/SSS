@@ -38,10 +38,10 @@ class HRController extends Controller
     {
         // $dataUser = User::find($id);
         // $dataUser = DB::select("SELECT * from users where id = '$id' left join roles where role.name '==' users.jabatan");
-        $dataUser = User::where('id','=',$id)->with('roles')->get();
-        // dd($dataUser);
+        $dataUser = User::where('id','=',$id)->get();
+        $Role = Role::where('name',User::find($id)->jabatan)->get();
         // return view('admin.hr.uploadFile',['dataUser'=>$dataUser]);
-        return $dataUser;
+        return [$dataUser,$Role];
     }
 
     // ke view tabel user yang tidak aktif
@@ -322,7 +322,7 @@ class HRController extends Controller
             // 'graduated_from'=>'string|nullable',
 
         ]);
-
+        $jabatan = Role::find($request['jabatan']);
         $data = [
             // 'employee_id' => $idUser,
             'fullname' => ($request['fullname'] !== null) ? $request['fullname'] : $getDataUser->fullname,
@@ -333,7 +333,7 @@ class HRController extends Controller
             'ktp' => ($request['ktp'] !== null) ?$request['ktp'] : $getDataUser->ktp,
             'kk' => ($request['kk'] !== null) ?$request['kk'] : $getDataUser->kk,
             'npwp' => ($request['npwp'] !== null) ?$request['npwp'] : $getDataUser->npwp,
-            'jabatan' => ($request['jabatan'] !== null) ?$request['jabatan'] : $getDataUser->jabatan,
+            'jabatan' => ($request['jabatan'] !== null) ? $jabatan->name : $getDataUser->jabatan,
             'almt_ktp' => ($request['alamat_ktp'] !== null) ?$request['alamat_ktp'] : $getDataUser->almt_ktp,
             'status_pernikahan' => ($request['status_pernikahan'] !== null) ?$request['status_pernikahan'] : $getDataUser->status_pernikahan,
             'agama' => ($request['agama'] !== null) ?$request['agama'] : $getDataUser->agama,

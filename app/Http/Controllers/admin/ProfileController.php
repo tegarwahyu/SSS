@@ -49,7 +49,8 @@ class ProfileController extends Controller
                 })
                 ->addColumn('pendapatan', function($data){
                     $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
-                    return $pendapatan;
+                    $convrtPendapatan = "Rp " . str_replace(",00","",number_format($pendapatan,2,',','.'));
+                    return $convrtPendapatan;
                 })
                 ->addColumn('periode', function($data){
 
@@ -58,14 +59,15 @@ class ProfileController extends Controller
                 })
                 ->addColumn('potongan', function($data){
                     $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21;
-                    // dd($potongan);
-                    return $potongan;
+                    $convrtPotongan = "Rp " . str_replace(",00","",number_format($potongan,2,',','.'));
+                    return $convrtPotongan;
                 })
                 ->addColumn('total', function($data){
                     $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
                     $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21 ;
                     $total = $pendapatan - $potongan;
-                    return $total;
+                    $convrtTotal = "Rp " . str_replace(",00","",number_format($total,2,',','.'));
+                    return $convrtTotal;
                 })
                 ->addColumn('action', function($user){
                     $button = '<a href="'.route('viewSlipSalary',$user->id).'" data-toggle="tooltip" title="Lihat Slip Salary" class="btn btn-outline-info btn-sm"><i class="ni ni-single-copy-04"></i></a>';

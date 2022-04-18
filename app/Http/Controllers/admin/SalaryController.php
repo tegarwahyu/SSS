@@ -67,18 +67,20 @@ class SalaryController extends Controller
                 })
                 ->addColumn('pendapatan', function($data){
                     $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel;
-                    return $pendapatan;
+                    $convrtPendapatan = "Rp " . str_replace(",00","",number_format($pendapatan,2,',','.'));
+                    return $convrtPendapatan;
                 })
                 ->addColumn('potongan', function($data){
                     $potongan = $data->late_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21;
-                    // dd($potongan);
-                    return $potongan;
+                    $convrtPotongan = "Rp " . str_replace(",00","",number_format($potongan,2,',','.'));
+                    return $convrtPotongan;
                 })
                 ->addColumn('total', function($data){
                     $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel;
                     $potongan = $data->late_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21 ;
                     $total = $pendapatan - $potongan;
-                    return $total;
+                    $convrtTotal = "Rp " . str_replace(",00","",number_format($total,2,',','.'));
+                    return $convrtTotal;
                 })
 
                 ->addColumn('action', function($data){
@@ -118,15 +120,16 @@ class SalaryController extends Controller
             return redirect()->back()->with('EmptyData', 'Maaf Slip Gaji yang anda cari tidak ada di Database');
         }else{
             // print pdf salary
-            // $pdf = PDF::loadView('admin.salary.viewSlipSalary',
-            // [
-            //     'dataSalary'=>$dataSalaryById[0],
-            //     'dataUser'=>$dataUser[0],
-            //     'jabatanUser'=>$jabatanUser
-            // ])->setPaper('a4', 'landscape');
-            // return $pdf->stream('salary-'.$dataUser[0]->employee_id.'.pdf',array('Attachment'=>false));
+            $pdf = PDF::loadView('admin.salary.viewSlipSalary',
+            [
+                'dataSalary'=>$dataSalaryById[0],
+                'dataUser'=>$dataUser[0],
+                'jabatanUser'=>$jabatanUser,
+                'noUrut'=>$countUser
+            ])->setPaper('a4', 'landscape');
+            return $pdf->stream('salary-'.$dataUser[0]->employee_id.'.pdf',array('Attachment'=>false));
             // see in html
-            return view('admin.salary.viewSlipSalary',['dataSalary'=>$dataSalaryById[0],'dataUser'=>$dataUser[0],'jabatanUser'=>$jabatanUser,'noUrut'=>$countUser]);
+            // return view('admin.salary.viewSlipSalary',['dataSalary'=>$dataSalaryById[0],'dataUser'=>$dataUser[0],'jabatanUser'=>$jabatanUser,'noUrut'=>$countUser]);
         }
 
     }

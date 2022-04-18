@@ -37,6 +37,7 @@ class SalaryImport implements ToModel, SkipsEmptyRows, WithValidation, WithHeadi
             'overtime' => $row['overtime'],
             'insentif' => $row['insentif'],
             'rapel' => $row['rapel'],
+            'bonus' => $row['bonus'],
             'late_reduce' => $row['late_reduce'],
             'absent_reduce' => $row['absent_reduce'],
             'other_reduce' => $row['other_reduce'],

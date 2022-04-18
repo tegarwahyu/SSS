@@ -6,6 +6,12 @@
         //show the first tab
         $('.nav-tabs a:first').tab('show')
 
+        $("#jabatan").selectize({
+            allowEmptyOption: true,
+            placeholder: "Pilih Jabatan",
+            create: false,
+        });
+
         {{--  modalEditUser  --}}
         function editUser(id){
             //console.log(id);
@@ -18,30 +24,30 @@
                 type: "GET",
                 dataType: "JSON",
                 success: function(data){
-                    console.log(data[0].roles[0].id)
-                    var jabatan = data[0].roles[0].id;
+                    //console.log(data[0][0])
+                    let jabatan = data[1][0].id;
+                    //console.log(jabatan)
                     $('.iduser').val(id);
-                    $('#ktp').val(data[0].ktp);
-                    $('#kk').val(data[0].kk);
-                    $('#passport').val(data[0].passport);
-                    $('#npwp').val(data[0].npwp);
-                    $('#email').val(data[0].email);
-                    $('#nama_lengkap').val(data[0].fullname);
-                    $('#alamat_domisili').val(data[0].almt_domisili);
-                    $('#phone_rumah').val(data[0].tlp_rumah);
-                    $('#alamat_ktp').val(data[0].almt_ktp);
-                    $('#phone_hp').val(data[0].tlp_hp);
-                    //$('#jabatan').data('selectize').setValue(data[0].roles[0].id);
-                    $('#jabatan').val(jabatan);
-                    $('#divisi').val(data[0].divisi);
-                    $('#status_pernikahan').val(data[0].status_pernikahan);
-                    $('#agama').val(data[0].agama);
-                    $('#darah').val(data[0].golongan_darah);
-                    $('#tempat_lahir').val(data[0].tempat_lahir);
-                    $('#tanggal_lahir').val(data[0].tanggal_lahir);
-                    $('#kewarganegaraan').val(data[0].kewarganegaraan);
-                    $('#jabatan').val(data[0].jabatan);
-                    $('#sosmed').val(data[0].sosmed);
+                    $('#ktp').val(data[0][0].ktp);
+                    $('#kk').val(data[0][0].kk);
+                    $('#passport').val(data[0][0].passport);
+                    $('#npwp').val(data[0][0].npwp);
+                    $('#email').val(data[0][0].email);
+                    $('#nama_lengkap').val(data[0][0].fullname);
+                    $('#alamat_domisili').val(data[0][0].almt_domisili);
+                    $('#phone_rumah').val(data[0][0].tlp_rumah);
+                    $('#alamat_ktp').val(data[0][0].almt_ktp);
+                    $('#phone_hp').val(data[0][0].tlp_hp);
+                    $('#jabatan')[0].selectize.setValue(jabatan);
+                    $('#divisi').val(data[0][0].divisi);
+                    $('#status_pernikahan').val(data[0][0].status_pernikahan);
+                    $('#agama').val(data[0][0].agama);
+                    $('#darah').val(data[0][0].golongan_darah);
+                    $('#tempat_lahir').val(data[0][0].tempat_lahir);
+                    $('#tanggal_lahir').val(data[0][0].tanggal_lahir);
+                    $('#kewarganegaraan').val(data[0][0].kewarganegaraan);
+                    $('#jabatan').val(data[0][0].jabatan);
+                    $('#sosmed').val(data[0][0].sosmed);
 
                     $('#user-update-form').validate({
                         rules: {
