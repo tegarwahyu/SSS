@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin', 'namespace' => 'admin', 'middleware' => ['auth'
 	Route::get('','DashboardController@index')->name('admin');
 
 	// profile user
-	Route::group(['middleware'=> ['role:Super Admin|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
+	Route::group(['middleware'=> ['role:Super Admin|Secretary|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
 		// to profile user
 		Route::get('profile/{id}','ProfileController@viewProfileById')->name('profile');
 		//get data gaji user
@@ -77,7 +77,7 @@ Route::group(['prefix'=>'admin', 'namespace' => 'admin', 'middleware' => ['auth'
     });
 
 	// route hr mengelola salary/payroll user
-    Route::group(['middleware'=> ['role:Super Admin|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
+    Route::group(['middleware'=> ['role:Super Admin|Secretary|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl|Secretary']], function(){
 		// to index salary
         Route::get('hr/salary','SalaryController@index')->name('salary');
         // view slip salary

@@ -8,13 +8,13 @@
                     <img alt="Image placeholder" src="{{ asset('assets/img/theme/team-4-800x800.jpg') }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold name-user">{{ auth()->user()->fullname }}</span>
+                    <span class="mb-0 text-sm  font-weight-bold name-user"><?php $pieces = explode(" ", auth()->user()->fullname ); echo $pieces[0]." ";  echo $pieces[1];?></span>
                 </div>
             </div>
         </a>
         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0 menu-name-user">Selamat Datang {{ auth()->user()->fullname }}</h6>
+                <h6 class="text-overflow m-0 menu-name-user">Selamat Datang <?php $pieces = explode(" ", auth()->user()->fullname ); echo $pieces[0]." ";  echo $pieces[1];?></h6>
             </div>
             {{--  <a href="#" class="dropdown-item">  --}}
             <a href="{{ route('profile', auth()->user()->id) }}" class="dropdown-item">

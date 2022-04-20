@@ -197,7 +197,7 @@
                         @enderror
                         <script>
                             $('#tanggal_lahir').datepicker({
-                                format: "dd-mm-yyyy",
+                                format: "dd/mm/yyyy",
                                 autoclose: true,
                             });
                         </script>

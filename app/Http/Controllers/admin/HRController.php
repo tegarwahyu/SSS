@@ -36,12 +36,20 @@ class HRController extends Controller
 
     public function editUser($id)
     {
+        // SELECT id AS USER_ID, employee_id,ktp,kk,passport,npwp,fullname,almt_ktp,almt_domisili,tempat_lahir,tanggal_lahir,email,tlp_hp,tlp_rumah,jabatan,divisi,agama,status_pernikahan,kewarganegaraan,golongan_darah,passport FROM `users`;
         // $dataUser = User::find($id);
-        // $dataUser = DB::select("SELECT * from users where id = '$id' left join roles where role.name '==' users.jabatan");
-        $dataUser = User::where('id','=',$id)->get();
-        $Role = Role::where('name',User::find($id)->jabatan)->get();
+        // $dataUser = DB::select("SELECT * from users where user.id as userid = '$id' join roles where role.name as role_name == users.jabatan");
+        // $dataUser = User::where((DB::select('SELECT id as users_id'))),$id)->get();
+        // $Role = Role::where('name',User::find($id)->jabatan)->get();
+        $usersDetails = DB::table('users')
+            ->Where('users.id','=',$id)
+            ->join('roles', 'users.jabatan', '=', 'roles.name')// joining the contacts table , where user_id and contact_user_id are same
+            // ->select('users.*', 'roles.id as role_id')
+            ->get();
+            // dd($usersDetails);
         // return view('admin.hr.uploadFile',['dataUser'=>$dataUser]);
-        return [$dataUser,$Role];
+        // return [$dataUser,$Role];
+        return $usersDetails;
     }
 
     // ke view tabel user yang tidak aktif
@@ -308,7 +316,9 @@ class HRController extends Controller
 
     public function updateUser(Request $request){ //perlu di update ini
         // dd($request);
-        $getDataUser = User::find($request->id_user);
+        $getDataUser = User::where('employee_id',$request->id_user)->get();
+        // dd($getDataUser);
+        // die();
         $validator = Validator::make($request->all(), [
             'ktp' => 'required|string|min:8|unique:users',
             'kk' => 'string|nullable',
@@ -316,7 +326,7 @@ class HRController extends Controller
             'email' =>'required|string|email|max:255|min:3|unique:users',
             'passport' =>'string|nullable',
             'password'=>'required|min:6|confirmed',
-            'sosmed'=>'string|nullable',
+            // 'sosmed'=>'string|nullable',
             // 'ec_families'=>'string|nullable',
             //json format graduated_from graduated_from:{SD:{'nama':'','jurusan':'','program':'',....}} for future use.
             // 'graduated_from'=>'string|nullable',
@@ -325,24 +335,24 @@ class HRController extends Controller
         $jabatan = Role::find($request['jabatan']);
         $data = [
             // 'employee_id' => $idUser,
-            'fullname' => ($request['fullname'] !== null) ? $request['fullname'] : $getDataUser->fullname,
-            'email' => ($request['email'] !== null) ? $request['email'] : $getDataUser->email,
-            'tlp_hp' => ($request['phone_hp'] !== null) ? $request['phone_hp'] : $getDataUser->tlp_hp,
-            'tlp_rumah' => ($request['phone_rumah'] !== null) ? $request['phone_rumah'] : $getDataUser->tlp_rumah,
-            'passport' => ($request['passport'] !== null) ?$request['passport'] : $getDataUser->passport,
-            'ktp' => ($request['ktp'] !== null) ?$request['ktp'] : $getDataUser->ktp,
-            'kk' => ($request['kk'] !== null) ?$request['kk'] : $getDataUser->kk,
-            'npwp' => ($request['npwp'] !== null) ?$request['npwp'] : $getDataUser->npwp,
-            'jabatan' => ($request['jabatan'] !== null) ? $jabatan->name : $getDataUser->jabatan,
-            'almt_ktp' => ($request['alamat_ktp'] !== null) ?$request['alamat_ktp'] : $getDataUser->almt_ktp,
-            'status_pernikahan' => ($request['status_pernikahan'] !== null) ?$request['status_pernikahan'] : $getDataUser->status_pernikahan,
-            'agama' => ($request['agama'] !== null) ?$request['agama'] : $getDataUser->agama,
-            'kewarganegaraan' => ($request['kewarganegaraan'] !== null) ?$request['kewarganegaraan'] : $getDataUser->kewarganegaraan,
-            'golongan_darah' => ($request['darah'] !== null) ?$request['darah'] : $getDataUser->golongan_darah,
-            'almt_domisili' => ($request['alamat_domisili'] !== null) ?$request['alamat_domisili'] : $getDataUser->almt_domisili,
-            'password' => ($request['password'] !== null) ?$request['password'] : $getDataUser->password,
+            'fullname' => ($request['fullname'] !== null) ? $request['fullname'] : $getDataUser[0]->fullname,
+            'email' => ($request['email'] !== null) ? $request['email'] : $getDataUser[0]->email,
+            'tlp_hp' => ($request['phone_hp'] !== null) ? $request['phone_hp'] : $getDataUser[0]->tlp_hp,
+            'tlp_rumah' => ($request['phone_rumah'] !== null) ? $request['phone_rumah'] : $getDataUser[0]->tlp_rumah,
+            'passport' => ($request['passport'] !== null) ?$request['passport'] : $getDataUser[0]->passport,
+            'ktp' => ($request['ktp'] !== null) ?$request['ktp'] : $getDataUser[0]->ktp,
+            'kk' => ($request['kk'] !== null) ?$request['kk'] : $getDataUser[0]->kk,
+            'npwp' => ($request['npwp'] !== null) ?$request['npwp'] : $getDataUser[0]->npwp,
+            'jabatan' => ($request['jabatan'] !== null) ? $jabatan->name : $getDataUser[0]->jabatan,
+            'almt_ktp' => ($request['alamat_ktp'] !== null) ?$request['alamat_ktp'] : $getDataUser[0]->almt_ktp,
+            'status_pernikahan' => ($request['status_pernikahan'] !== null) ?$request['status_pernikahan'] : $getDataUser[0]->status_pernikahan,
+            'agama' => ($request['agama'] !== null) ?$request['agama'] : $getDataUser[0]->agama,
+            'kewarganegaraan' => ($request['kewarganegaraan'] !== null) ?$request['kewarganegaraan'] : $getDataUser[0]->kewarganegaraan,
+            'golongan_darah' => ($request['darah'] !== null) ?$request['darah'] : $getDataUser[0]->golongan_darah,
+            'almt_domisili' => ($request['alamat_domisili'] !== null) ?$request['alamat_domisili'] : $getDataUser[0]->almt_domisili,
+            'password' => ($request['password'] !== null) ?$request['password'] : $getDataUser[0]->password,
         ];
-        $getDataUser->update($data);
+        $getDataUser[0]->update($data);
         return $getDataUser;
     }
 
