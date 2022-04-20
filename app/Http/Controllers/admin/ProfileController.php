@@ -48,7 +48,7 @@ class ProfileController extends Controller
                     }
                 })
                 ->addColumn('pendapatan', function($data){
-                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
+                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel + $data->bonus;
                     $convrtPendapatan = "Rp " . str_replace(",00","",number_format($pendapatan,2,',','.'));
                     return $convrtPendapatan;
                 })
@@ -63,7 +63,7 @@ class ProfileController extends Controller
                     return $convrtPotongan;
                 })
                 ->addColumn('total', function($data){
-                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->interview + $data->apptending + $data->rapel;
+                    $pendapatan = $data->gaji_pokok + $data->tunjangan_jabatan + $data->tunjangan_makan + $data->tunjangan_transport + $data->loyal_reward + $data->overtime + $data->insentif + $data->attending + $data->rapel + $data->bonus;
                     $potongan = $data->late_reduce + $data->permit_reduce + $data->absent_reduce + $data->other_reduce + $data->cash_advance_reduce + $data->bpjs_tk + $data->bpjs_ks + $data->pph_21 ;
                     $total = $pendapatan - $potongan;
                     $convrtTotal = "Rp " . str_replace(",00","",number_format($total,2,',','.'));

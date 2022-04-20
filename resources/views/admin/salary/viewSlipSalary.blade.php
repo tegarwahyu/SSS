@@ -82,7 +82,7 @@
                         : Rp  <?php echo ($dataSalary->rapel == null || $dataSalary->rapel == 0) ?  '-' : str_replace(",",".",number_format($dataSalary->rapel));?><br>
                         : Rp  <?php echo ($dataSalary->bonus == null || $dataSalary->bonus == 0) ?  '-' : str_replace(",",".",number_format($dataSalary->bonus));?><br>
                         _______________________+<br><br>
-                        : Rp  <?php echo str_replace(",",".",number_format(($dataSalary->gaji_pokok + $dataSalary->tunjangan_jabatan + $dataSalary->tunjangan_makan + $dataSalary->tunjangan_transport + $dataSalary->loyal_reward + $dataSalary->overtime + $dataSalary->insentif + $dataSalary->apptending + $dataSalary->rapel + $dataSalary->bonus)))?></bold>
+                        : Rp  <?php echo str_replace(",",".",number_format(($dataSalary->gaji_pokok + $dataSalary->tunjangan_jabatan + $dataSalary->tunjangan_makan + $dataSalary->tunjangan_transport + $dataSalary->loyal_reward + $dataSalary->overtime + $dataSalary->insentif + $dataSalary->attending + $dataSalary->rapel + $dataSalary->bonus)))?></bold>
                     </td>
                     <td><strong><u>Potongan</u></strong><br><br>
                         Late Reducetion  <br>
@@ -108,7 +108,7 @@
                 </tr>
                 <tr style="background-color: #7ac0e9 !important;">
                     <th colspan="2"><center>GAJI YANG DITERIMA  :</center></th>
-                    <th colspan="2"><center>RP <?php  $pendapatan = $dataSalary->gaji_pokok + $dataSalary->tunjangan_jabatan + $dataSalary->tunjangan_makan + $dataSalary->tunjangan_transport + $dataSalary->loyal_reward + $dataSalary->overtime + $dataSalary->insentif + $dataSalary->apptending + $dataSalary->rapel + $dataSalary->bonus;
+                    <th colspan="2"><center>RP <?php  $pendapatan = $dataSalary->gaji_pokok + $dataSalary->tunjangan_jabatan + $dataSalary->tunjangan_makan + $dataSalary->tunjangan_transport + $dataSalary->loyal_reward + $dataSalary->overtime + $dataSalary->insentif + $dataSalary->attending + $dataSalary->rapel + $dataSalary->bonus;
                                                    $potongan = $dataSalary->late_reduce + $dataSalary->absent_reduce + $dataSalary->other_reduce + $dataSalary->cash_advance_reduce + $dataSalary->bpjs_tk + $dataSalary->bpjs_ks + $dataSalary->pph_21;
                                                    echo str_replace(",",".",number_format(($pendapatan - $potongan)));
                                                 ?>
