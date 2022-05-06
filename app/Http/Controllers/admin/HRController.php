@@ -141,7 +141,7 @@ class HRController extends Controller
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#" onclick="editUser('. $data->id .')"><i class="ikon ni ni-single-02"></i>Ubah Data Karyawan</a>
                                     '.$btnEmployee.'
-
+                                    <a class="dropdown-item disabled"><i class="ikon ni ni-single-02"></i>Lihat Data Karyawan</a>
                                 </div>
                             </div>
                         </div>';

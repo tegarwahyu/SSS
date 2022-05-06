@@ -45,7 +45,7 @@
                     $('#darah').val(data[0].golongan_darah);
                     $('#tempat_lahir').val(data[0].tempat_lahir);
                     //$('#tanggal_lahir').val(data[0].tanggal_lahir);
-                    $("#tanggal_lahir").datepicker('setDate', data[0].tanggal_lahir);
+                    $('#tanggal_lahir').datepicker('setDate', new Date(data[0].tanggal_lahir));
                     $('#kewarganegaraan').val(data[0].kewarganegaraan);
 
                     $('#user-update-form').validate({
