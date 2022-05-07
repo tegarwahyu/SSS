@@ -15,6 +15,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class SalaryController extends Controller
 {
@@ -139,8 +140,16 @@ class SalaryController extends Controller
         return Response()->download($filepath);
     }
 
-    public function viewDataSalaryById(){
-        return view('admin.salary.salaryku');
+    public function viewDataSalaryById(){ // view salary user itself
+        if(Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC'){
+            if(Auth::user()->resume == '' || Auth::user()->resume == null){
+                return Redirect::to('/user/profile/'. Auth::user()->id);
+            }else{
+                return view('admin.salary.salaryku');
+            }
+        }else{
+            return view('admin.salary.salaryku');
+        }
     }
 
     /**

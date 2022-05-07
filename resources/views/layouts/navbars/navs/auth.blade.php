@@ -51,18 +51,22 @@
                 </li>
                 @endhasanyrole
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-icon dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="ni ni-chart-bar-32"></i>
-                        <span id="menu_id" class="nav-link-inner--text">{{ __('Salary') }}</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        @hasanyrole('Super Admin|HR Manager')
-                        <a  class="dropdown-item" href="{{ route('salary') }}"><i class="ni ni-chart-bar-32"></i><span>{{ __('List Salary') }}</span></a>
-                        @endhasanyrole
-                        <a  class="dropdown-item" href="{{route('salaryById')}}"><i class="ikon ni ni-lock-circle-open"></i><span>{{ __('Salary Ku') }}</span></a>
-                    </div>
-                </li>
+                @if((Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC') == true && (Auth::user()->resume == '' || Auth::user()->resume == null) == true)
+                
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-icon dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="ni ni-chart-bar-32"></i>
+                            <span id="menu_id" class="nav-link-inner--text">{{ __('Salary') }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                            @hasanyrole('Super Admin|HR Manager')
+                            <a  class="dropdown-item" href="{{ route('salary') }}"><i class="ni ni-chart-bar-32"></i><span>{{ __('List Salary') }}</span></a>
+                            @endhasanyrole
+                            <a  class="dropdown-item" href="{{route('salaryById')}}"><i class="ikon ni ni-lock-circle-open"></i><span>{{ __('Salary Ku') }}</span></a>
+                        </div>
+                    </li>
+                @endif
 
 
 

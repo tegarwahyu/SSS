@@ -4,12 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','isDC']);
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +20,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        if(Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC'){
+            if(Auth::user()->resume == '' || Auth::user()->resume == null){
+                return Redirect::to('/user/profile/'. Auth::user()->id);
+            }else{
+                return view('admin.dashboard.index');
+            }
+        }else{
+            return view('admin.dashboard.index');
+        }
     }
 
     /**

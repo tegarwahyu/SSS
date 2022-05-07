@@ -39,7 +39,7 @@
                           processing: true,
                           serverSide: true,
                           deferRender: true,
-                          ajax : "{{ url('admin/profile/getDataSalaryUserById/') }}" + '/' + id,
+                          ajax : "{{ url('user/profile/getDataSalaryUserById/') }}" + '/' + id,
                           columns: [
                               {
                                   'defaultContent' : '',

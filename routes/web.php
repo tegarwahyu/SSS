@@ -34,20 +34,20 @@ Route::group(['middleware' => ['auth','permission:Access admin page']], function
 
 
 //starting point new route classification
-Route::group(['prefix'=>'admin', 'namespace' => 'admin', 'middleware' => ['auth','permission:Access admin page']], function () {
+Route::group(['prefix'=>'admin', 'namespace' => 'admin', 'middleware' => ['auth','isDC']], function () {
 
 	//admin index will be halaman awal setelah login
 	Route::get('','DashboardController@index')->name('admin');
 
-	// profile user
-	Route::group(['middleware'=> ['role:Super Admin|Secretary|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
-		// to profile user
-		Route::get('profile/{id}','ProfileController@viewProfileById')->name('profile');
-		//get data gaji user
-		Route::get('profile/getDataSalaryUserById/{id}','ProfileController@getDataSalaryUserById');
-        // ubah password via profile
-        Route::post('profile/editPasswordProfile','ProfileController@editPasswordProfile')->name('editPassword');
-	});
+	// // profile user
+	// Route::group(['middleware'=> ['role:Super Admin|Secretary|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
+	// 	// to profile user
+	// 	Route::get('profile/{id}','ProfileController@viewProfileById')->name('profile');
+	// 	//get data gaji user
+	// 	Route::get('profile/getDataSalaryUserById/{id}','ProfileController@getDataSalaryUserById');
+    //     // ubah password via profile
+    //     Route::post('profile/editPasswordProfile','ProfileController@editPasswordProfile')->name('editPassword');
+	// });
 
 	// route hr mengelola user
     Route::group(['middleware'=> ['role:Super Admin|HR Staff|HR Manager|Collection Staff|Collection Manager']], function(){
@@ -110,7 +110,16 @@ Route::group(['prefix'=>'admin', 'namespace' => 'admin', 'middleware' => ['auth'
     Route::resource('roles', 'RoleController'); // bug on update ( admin/roles/{id} 404 not found, tapi data sukses terupdate )
     Route::resource('permissions', 'PermissionController');
 
+});
 
-
-
+Route::group(['prefix'=>'user', 'namespace' => 'admin', 'middleware' => ['auth','isDC']], function () {
+	// profile user
+	Route::group(['middleware'=> ['role:Super Admin|Secretary|HR Staff|HR Manager|Leader DC|Collection Manager|Supervisor DC|Desk Collection|Director|Admin|Komisaris|Operasional Manager|Management|QA & Legal Manager|IT Manager|General Affair Staff|IT Staff|FAT Manager|Tax Staff|Translator Mandarin|Legal Staff|Medic Staff|Driver|Resepsionis|Security|Office Boy|Office Girl']], function(){
+		// to profile user
+		Route::get('profile/{id}','ProfileController@viewProfileById')->name('profile');
+		//get data gaji user
+		Route::get('profile/getDataSalaryUserById/{id}','ProfileController@getDataSalaryUserById');
+		// ubah password via profile
+		Route::post('profile/editPasswordProfile','ProfileController@editPasswordProfile')->name('editPassword');
+	});
 });
