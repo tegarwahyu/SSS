@@ -51,9 +51,7 @@
                 </li>
                 @endhasanyrole
 
-                @if((Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC') == true && (Auth::user()->resume == '' || Auth::user()->resume == null) == true)
-                
-                @else
+                @if((Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC') && (Auth::user()->resume && Auth::user()->f_ktp && Auth::user()->f_kk && Auth::user()->f_ijazah))
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="ni ni-chart-bar-32"></i>
@@ -66,6 +64,8 @@
                             <a  class="dropdown-item" href="{{route('salaryById')}}"><i class="ikon ni ni-lock-circle-open"></i><span>{{ __('Salary Ku') }}</span></a>
                         </div>
                     </li>
+                @else
+                    
                 @endif
 
 

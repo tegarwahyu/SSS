@@ -24,7 +24,7 @@
                 type: "GET",
                 dataType: "JSON",
                 success: function(data){
-                    //console.log(data[0].id)
+                    console.log(data[0])
                     //let jabatan = data[1][0].id;
                     //console.log(jabatan)
                     $('.iduser').val(data[0].employee_id);

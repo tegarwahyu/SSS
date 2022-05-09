@@ -21,7 +21,7 @@ class DashboardController extends Controller
     public function index()
     {
         if(Auth::user()->jabatan == 'Desk Collection' || Auth::user()->jabatan == 'Leader DC' || Auth::user()->jabatan == 'Supervisor DC'){
-            if(Auth::user()->resume == '' || Auth::user()->resume == null){
+            if(Auth::user()->resume == '' || Auth::user()->resume == null && Auth::user()->f_ktp == '' || Auth::user()->f_ktp == null && Auth::user()->f_kk == '' || Auth::user()->f_kk == null && Auth::user()->f_ijazah == '' || Auth::user()->f_ijazah == null){
                 return Redirect::to('/user/profile/'. Auth::user()->id);
             }else{
                 return view('admin.dashboard.index');

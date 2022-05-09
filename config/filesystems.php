@@ -48,9 +48,9 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'sertifikat_user' => [
+        'file_user' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('file_upload'),
         ],
 
         'public' => [
