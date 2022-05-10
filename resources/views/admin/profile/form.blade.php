@@ -484,7 +484,7 @@
                                         <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Foto Diri') }}</span>
                                         <div class="col-md-4">
                                         
-                                            @if($dataUser[0]->resume == null || $dataUser[0]->resume == '' )
+                                            @if($dataUser[0]->f_diri == null || $dataUser[0]->f_diri == '' )
                                                 <input type="file" class="form-control" name="file_foto" id="file_foto" accept="image/png, image/jpg, image/jpeg" required>
                                                 <p class="form-text text-muted" style="font-size: 10px;">*Max ukuran file ...MB dengan format (png, jgp, jpeg)
                                             @else
@@ -499,7 +499,7 @@
                                         <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('KTP') }}</span>
                                         <div class="col-md-4">
                                             
-                                            @if($dataUser[0]->resume == null || $dataUser[0]->resume == '' )
+                                            @if($dataUser[0]->f_ktp == null || $dataUser[0]->f_ktp == '' )
                                                 <input type="file" class="form-control" name="file_ktp" id="file_ktp" accept="image/png, image/jpg, image/jpeg" required>
                                                 <p class="form-text text-muted" style="font-size: 10px;">*Max ukuran file ...MB dengan format (png, jgp, jpeg)
                                             @else
@@ -514,7 +514,7 @@
                                         <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('KK') }}</span>
                                         <div class="col-md-4">
 
-                                            @if($dataUser[0]->resume == null || $dataUser[0]->resume == '' )
+                                            @if($dataUser[0]->f_kk == null || $dataUser[0]->f_kk == '' )
                                                 <input type="file" class="form-control" name="file_kk" id="file_kk" accept="image/png, image/jpg, image/jpeg" required>
                                                 <p class="form-text text-muted" style="font-size: 10px;">*Max ukuran file ...MB dengan format (png, jgp, jpeg)
                                             @else
@@ -529,7 +529,7 @@
                                         <span class="col-md-2 col-form-label text-md-right labelclass">{{ __('Ijazah Terakhir') }}</span>
                                         <div class="col-md-4">
 
-                                            @if($dataUser[0]->resume == null || $dataUser[0]->resume == '' )
+                                            @if($dataUser[0]->f_ijazah == null || $dataUser[0]->f_ijazah == '' )
                                                 <input type="file" class="form-control" name="file_ijazah" id="file_ijazah" accept="image/png, image/jpg, image/jpeg" required>
                                                 <p class="form-text text-muted" style="font-size: 10px;">*Max ukuran file ...MB dengan format (png, jgp, jpeg)
                                             @else

@@ -33,13 +33,13 @@ class ProfileController extends Controller
     }
 
     public function viewProfileById($id){
+        // dd(Hash::make('ID-SSS50687'));
         if(Auth::user()->id == $id){
             $dataUserById = User::where('id',$id)->get();
             return view('admin.profile.index',['dataUser'=>$dataUserById]);
         }else{
             return redirect()->route('admin');
         }
-        
     }
 
     public function editPasswordProfile(Request $request){
